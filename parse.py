@@ -1,4 +1,9 @@
-# -*- coding: utf-8 -*-
+##################################
+# wakati.pyで読み込んで使う
+# parser_mecabはカンマ区切りで分かち書きする
+# parser_spaceはスペース区切りで分かち書きする
+# is_nounは単語が名詞かどうかを判断する
+##################################
 
 from natto import MeCab
 mc = MeCab('-d /usr/local/lib/mecab/dic/mecab-ipadic-neologd')
@@ -17,14 +22,6 @@ def parser_mecab(text):
                 words.append(n.surface)
     return words
 
-def is_noun(word):
-    for n in mc.parse(word, as_nodes=True):
-        node = n.feature.split(',');
-        if node[0] == '名詞':
-            return True
-        else:
-            return False
-
 def parser_space(text):
     words = ""
     for n in mc.parse(text, as_nodes=True):
@@ -39,4 +36,11 @@ def parser_space(text):
         words += " "
     return words
 
+def is_noun(word):
+    for n in mc.parse(word, as_nodes=True):
+        node = n.feature.split(',');
+        if node[0] == '名詞':
+            return True
+        else:
+            return False
 

@@ -1,7 +1,7 @@
 ##################################
 # 分かち書きされた文章からストップワードを削除する
 ##################################
-## python stopword.py 読み込むテキスト.txt 書き込むテキスト.txt
+## python stopword.py 読み込むテキスト.csv 書き込むテキスト.csv
 
 import urllib.request
 import pandas as pd

@@ -16,6 +16,7 @@ def wakati():
     line = fi.readline()
     while line:
         result = parser_space(line)
+        result += "\n"
         fo.write(result[0:])
         line = fi.readline()
 

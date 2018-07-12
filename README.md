@@ -5,11 +5,11 @@
 
 実際には、プロジェクトや自然言語の形に合わせて前処理はやって行く必要があるが、自然言語の前処理の取っ掛かりとして参考になれば幸いです
 
-### 環境
+## 環境
 Python3以上
 
 
-### 環境構築
+## 環境構築
 [MeCabのインストール](https://www.saintsouth.net/blog/morphological-analysis-by-mecab-and-mecab-ipadic-neologd-and-python3/)
 ※ Macのかたはbrewとかでいけると思うので違う記事を参考にしてください
 MeCab辞書であるipadic-neologdを入れるときにはpatchがないと怒られるので以下のコマンドを実行後、ipadic-neologdを入れる  
@@ -22,7 +22,9 @@ sudo yum install gcc-c++ libiconv patch
 mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd
 ```
 
-### 概要
+## 概要
+
+### 分かち書き
 1行ごとに日本語の文章が格納されたファイルを対象として簡単なクレンジング作業と分かち書きを行えるようにしています
 
 [実行手順]
@@ -38,3 +40,12 @@ python stopword.py newfilename.csv updatefilename.csv
 ```
 python carving.py updatefilename.csv cutfilename.csv
 ```
+
+### 指定したサイズでのファイル切り出し
+ランダムで指定したサイズまでの分かち書きファイルを切り出す
+これにより、偏った文章を取得しているわけではないということを証明する
+```
+python carving.py ストップワード除去済み.csv 指定サイズ切り出し後.csv
+```
+
+

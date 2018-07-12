@@ -8,6 +8,20 @@
 ### 環境
 Python3以上
 
+
+### 環境構築
+[MeCabのインストール](https://www.saintsouth.net/blog/morphological-analysis-by-mecab-and-mecab-ipadic-neologd-and-python3/)
+※ Macのかたはbrewとかでいけると思うので違う記事を参考にしてください
+MeCab辞書であるipadic-neologdを入れるときにはpatchがないと怒られるので以下のコマンドを実行後、ipadic-neologdを入れる  
+ipadic-neologdは結構容量を食うので余裕を持って入れるようにしてください
+```
+sudo yum install gcc-c++ libiconv patch
+```
+以下のコマンドが使えるようになれば大丈夫です
+```
+mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd
+```
+
 ### 概要
 1行ごとに日本語の文章が格納されたファイルを対象として簡単なクレンジング作業と分かち書きを行えるようにしています
 

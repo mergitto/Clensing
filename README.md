@@ -30,22 +30,22 @@ mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd
 [実行手順]
 1. 分かち書きする
 ```
-python wakati.py filename.csv newfilename.csv
+python wakati.py ./csvfiles/filename.csv ./csvfiles/newfilename.csv
 ```
 1. ストップワードの除去をする
 ```
-python stopword.py newfilename.csv updatefilename.csv
+python stopword.py ./csvfiles/newfilename.csv ./csvfiles/updatefilename.csv
 ```
 1. 類似文章を削除する
 ```
-python carving.py updatefilename.csv cutfilename.csv
+python carving.py ./csvfiles/updatefilename.csv ./csvfiles/cutfilename.csv
 ```
 
 ### 指定したサイズでのファイル切り出し
 ランダムで指定したサイズまでの分かち書きファイルを切り出す
 これにより、偏った文章を取得しているわけではないということを証明する
 ```
-python carving.py ストップワード除去済み.csv 指定サイズ切り出し後.csv
+python carving.py ./csvfiles/ストップワード除去済み.csv ./csvfiles/指定サイズ切り出し後.csv
 ```
 
 

@@ -25,4 +25,16 @@ mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd
 ### 概要
 1行ごとに日本語の文章が格納されたファイルを対象として簡単なクレンジング作業と分かち書きを行えるようにしています
 
-
+[実行手順]
+1. 分かち書きする
+```
+python wakati.py filename.csv newfilename.csv
+```
+1. ストップワードの除去をする
+```
+python stopword.py newfilename.csv updatefilename.csv
+```
+1. 類似文章を削除する
+```
+python carving.py updatefilename.csv cutfilename.csv
+```

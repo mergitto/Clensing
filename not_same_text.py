@@ -29,7 +29,7 @@ def delete_if_same(text_list):
     origin_text_all_list = text_list[:]
     pop_count = 0
     for index, text in enumerate(origin_text_all_list):
-        print(round((index/len(origin_text_all_list)), 5)*100, "%")
+        print(round((index/len(origin_text_all_list)), 3)*100, "%")
         dummy_text_all_list = origin_text_all_list[:]
         dummy_text_all_list.pop(index)
         if text in dummy_text_all_list:

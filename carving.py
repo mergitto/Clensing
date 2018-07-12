@@ -14,15 +14,13 @@ def get_byte_num(s):
 
 if __name__ == '__main__':
     num_lines = sum(1 for line in open(filename))
-    print(num_lines)
     indices = list(range(num_lines))
-    print(indices)
     random.shuffle(indices)
 
     with open(save_file, 'w') as f:
         count_byte = 0
         for i in indices:
-            print('{} bytes'.format(count_byte))
+            print('{} MB'.format(round(count_byte/1000000, 1)))
             text = linecache.getline(filename, i)
             f.write(text)
             count_byte += get_byte_num(text)

@@ -38,7 +38,7 @@ python stopword.py ./csvfiles/newfilename.csv ./csvfiles/updatefilename.csv
 ```
 1. 類似文章を削除する
 ```
-python carving.py ./csvfiles/updatefilename.csv ./csvfiles/cutfilename.csv
+python not_same_text.py ./csvfiles/updatefilename.csv ./csvfiles/cutfilename.csv
 ```
 
 ### 指定したサイズでのファイル切り出し

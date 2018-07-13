@@ -61,7 +61,7 @@ if __name__ == '__main__':
     origin_text_all_list = text_all_list[:]
 
     match_list, cleansing_text_list = delete_if_same(text_all_list)
-    cleansing_text_list = recovery_list(match_list, cleansing_text_list, origin_text_all_list)
+    recovery_text_list = recovery_list(match_list, cleansing_text_list, origin_text_all_list)
 
-    save_text(cleansing_text_list)
+    save_text(recovery_text_list)
 

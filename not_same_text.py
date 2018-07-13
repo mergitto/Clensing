@@ -4,7 +4,6 @@
 
 import calc
 import pandas as pd
-from time import time
 import sys
 
 def create_text_list(filename):
@@ -57,22 +56,12 @@ def recovery_list(match_list, cleansing_text_list, origin_text_all_list):
 
 
 if __name__ == '__main__':
-    start = time()
-
     calculation = calc.Calc()
     text_all_list = create_text_list(sys.argv[1])
     origin_text_all_list = text_all_list[:]
 
-    print("経過時間：", round(time() - start, 1), "秒です")
-
     match_list, cleansing_text_list = delete_if_same(text_all_list)
     cleansing_text_list = recovery_list(match_list, cleansing_text_list, origin_text_all_list)
 
-    print("経過時間：", round(time() - start, 1), "秒です")
-
     save_text(cleansing_text_list)
-
-
-
-
 

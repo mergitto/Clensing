@@ -6,6 +6,7 @@
 import urllib.request
 import pandas as pd
 import sys
+from tqdm import tqdm
 
 f = urllib.request.urlopen('http://svn.sourceforge.jp/svnroot/slothlib/CSharp/Version1/SlothLib/NLP/Filter/StopWord/word/Japanese.txt')
 sw = [line.decode('utf-8').strip() for line in f] # 読み込んだurlから文章を読み込み
@@ -17,6 +18,8 @@ wakatiList = [w.strip() for w in wakati[0]]
 wakatiList = [ww for ww in wakatiList if not ww==u'']
 
 pdsw = [];
+print('[delete stopword]')
+wakatiList = tqdm(wakatiList)
 for w in wakatiList:
     stopRemove = []
     words = w.split()
@@ -27,6 +30,8 @@ for w in wakatiList:
     pdsw.append(stopRemove)
 
 f = open(sys.argv[2], 'w')
+print('[save text]')
+pdsw = tqdm(pdsw)
 for x in pdsw:
     f.write(str(x) + "\n")
 f.close()

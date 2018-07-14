@@ -76,7 +76,7 @@ if __name__ == '__main__':
     text_all_list = create_text_list(sys.argv[1])
     origin_text_all_list = text_all_list[:]
 
-    match_list, cleansing_text_list = distributed_processing(text_all_list, 10000)
+    match_list, cleansing_text_list = distributed_processing(text_all_list, sys.argv[3])
     recovery_text_list = recovery_list(match_list, cleansing_text_list, origin_text_all_list)
 
     save_text(recovery_text_list)

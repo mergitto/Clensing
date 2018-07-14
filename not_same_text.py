@@ -4,7 +4,6 @@
 
 import calc
 import pandas as pd
-from time import time
 import sys
 
 def create_text_list(filename):
@@ -25,11 +24,12 @@ def save_text(text_list):
     f.close()
 
 def delete_if_same(text_list):
+    from tqdm import tqdm
     match_list = []
     origin_text_all_list = text_list[:]
     pop_count = 0
-    for index, text in enumerate(origin_text_all_list):
-        print(round((index/len(origin_text_all_list)), 3)*100, "%")
+    print('[check same text]')
+    for index, text in enumerate(tqdm(origin_text_all_list)):
         dummy_text_all_list = origin_text_all_list[:]
         dummy_text_all_list.pop(index)
         if text in dummy_text_all_list:
@@ -54,24 +54,30 @@ def recovery_list(match_list, cleansing_text_list, origin_text_all_list):
         cleansing_text_list.append(origin_text_all_list[recovery_number])
     return cleansing_text_list
 
+def distributed_processing(text_all_list, process_number):
+    SPLIT_NUMBER = process_number
+    START_INDEX = 0
+    END_INDEX = process_number
+    match_all_list = []
+    cleansing_text_all_list = []
+    while True:
+        if len(text_all_list[START_INDEX:END_INDEX]) == 0:
+            break
+        print(END_INDEX, '/', len(text_all_list))
+        match_list, cleansing_text_list = delete_if_same(text_all_list[START_INDEX:END_INDEX])
+        match_all_list += match_list
+        cleansing_text_all_list += cleansing_text_list
+        START_INDEX += SPLIT_NUMBER
+        END_INDEX += SPLIT_NUMBER
+    return match_all_list, cleansing_text_all_list
 
 if __name__ == '__main__':
-    start = time()
-
     calculation = calc.Calc()
     text_all_list = create_text_list(sys.argv[1])
     origin_text_all_list = text_all_list[:]
 
-    print("経過時間：", round(time() - start, 1), "秒です")
+    match_list, cleansing_text_list = distributed_processing(text_all_list, sys.argv[3])
+    recovery_text_list = recovery_list(match_list, cleansing_text_list, origin_text_all_list)
 
-    match_list, cleansing_text_list = delete_if_same(text_all_list)
-    cleansing_text_list = recovery_list(match_list, cleansing_text_list, origin_text_all_list)
-
-    print("経過時間：", round(time() - start, 1), "秒です")
-
-    save_text(cleansing_text_list)
-
-
-
-
+    save_text(recovery_text_list)
 

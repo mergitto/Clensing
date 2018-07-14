@@ -36,9 +36,9 @@ python wakati.py ./csvfiles/filename.csv ./csvfiles/newfilename.csv
 ```
 python stopword.py ./csvfiles/newfilename.csv ./csvfiles/updatefilename.csv
 ```
-1. 類似文章を削除する
+1. 類似文章を削除する(50000は文書の分割数, 小さいと早いが重複を残し、大きいと遅いが重複がよく減る)
 ```
-python carving.py ./csvfiles/updatefilename.csv ./csvfiles/cutfilename.csv
+python not_same_text.py ./csvfiles/updatefilename.csv ./csvfiles/cutfilename.csv 50000
 ```
 
 ### 指定したサイズでのファイル切り出し

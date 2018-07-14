@@ -63,7 +63,9 @@ def distributed_processing(text_all_list, process_number):
     while True:
         if len(text_all_list[START_INDEX:END_INDEX]) == 0:
             break
-        print(END_INDEX, '/', len(text_all_list))
+        if END_INDEX > len(text_all_list):
+            END_INDEX = len(text_all_list) + 1
+        print('[', END_INDEX-1, '/', len(text_all_list), ']')
         match_list, cleansing_text_list = delete_if_same(text_all_list[START_INDEX:END_INDEX])
         match_all_list += match_list
         cleansing_text_all_list += cleansing_text_list
@@ -76,7 +78,7 @@ if __name__ == '__main__':
     text_all_list = create_text_list(sys.argv[1])
     origin_text_all_list = text_all_list[:]
 
-    match_list, cleansing_text_list = distributed_processing(text_all_list, sys.argv[3])
+    match_list, cleansing_text_list = distributed_processing(text_all_list, int(sys.argv[3]))
     recovery_text_list = recovery_list(match_list, cleansing_text_list, origin_text_all_list)
 
     save_text(recovery_text_list)

@@ -64,8 +64,8 @@ def distributed_processing(text_all_list, process_number):
         if len(text_all_list[START_INDEX:END_INDEX]) == 0:
             break
         if END_INDEX > len(text_all_list):
-            END_INDEX = len(text_all_list) + 1
-        print('[', END_INDEX-1, '/', len(text_all_list), ']')
+            END_INDEX = len(text_all_list)
+        print('[', END_INDEX, '/', len(text_all_list), ']')
         match_list, cleansing_text_list = delete_if_same(text_all_list[START_INDEX:END_INDEX])
         match_all_list += match_list
         cleansing_text_all_list += cleansing_text_list

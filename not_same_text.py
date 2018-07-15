@@ -2,7 +2,6 @@
 # 同じ文章をテキストコーパスから削除するためのスクリプト
 ########################################################
 
-import calc
 import pandas as pd
 import sys
 
@@ -74,7 +73,6 @@ def distributed_processing(text_all_list, process_number):
     return match_all_list, cleansing_text_all_list
 
 if __name__ == '__main__':
-    calculation = calc.Calc()
     text_all_list = create_text_list(sys.argv[1])
     origin_text_all_list = text_all_list[:]
 

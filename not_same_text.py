@@ -53,7 +53,7 @@ def recovery_list(match_list, cleansing_text_list, origin_text_all_list):
         cleansing_text_list.append(origin_text_all_list[recovery_number])
     return cleansing_text_list
 
-def distributed_processing(text_all_list, process_number):
+def distributed_processing(text_all_list, process_number=50000):
     SPLIT_NUMBER = process_number
     START_INDEX = 0
     END_INDEX = process_number
@@ -76,7 +76,7 @@ if __name__ == '__main__':
     text_all_list = create_text_list(sys.argv[1])
     origin_text_all_list = text_all_list[:]
 
-    match_list, cleansing_text_list = distributed_processing(text_all_list, int(sys.argv[3]))
+    match_list, cleansing_text_list = distributed_processing(text_all_list)
     recovery_text_list = recovery_list(match_list, cleansing_text_list, origin_text_all_list)
 
     save_text(recovery_text_list)

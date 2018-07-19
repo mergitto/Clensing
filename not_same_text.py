@@ -76,7 +76,8 @@ if __name__ == '__main__':
     text_all_list = create_text_list(sys.argv[1])
     origin_text_all_list = text_all_list[:]
 
-        # 一回の処理では全ての同一文書を削除できないので、全部削除できるまで処理を続ける
+    # 一回の処理では全ての同一文書を削除できないので、全部削除できるまで処理を続ける
+    count = 0
     while True:
         match_list, cleansing_text_list = distributed_processing(text_all_list)
         recovery_text_list = recovery_list(match_list, cleansing_text_list, origin_text_all_list)
@@ -84,5 +85,8 @@ if __name__ == '__main__':
         if len(recovery_text_list) == len(text_all_list):
             print('全ての同じ文章を削除しました')
             break
+        else:
+            print(count , ':check')
+            count += 1
         text_all_list = recovery_text_list[:]
 
